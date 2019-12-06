@@ -8,7 +8,6 @@ export default class Mouse {
   }
 
   set intersect(value) {
-    document.body.style.cursor = value ? "pointer" : "default";
     this.intersectObject = value;
   }
 

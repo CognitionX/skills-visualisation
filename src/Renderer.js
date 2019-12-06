@@ -108,6 +108,8 @@ export default class Renderer extends EventEmitter {
         }
       });
     }
+
+    document.body.style.cursor = this.mouse.intersect ? "pointer" : "default";
   }
 
   onMouseUp() {
