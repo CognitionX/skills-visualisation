@@ -6,7 +6,7 @@ import { hot } from "react-hot-loader/root";
 
 import App from "./App";
 import "./sass/root.sass";
-import data from "./4.json";
+import data from "./samples/test_1.json";
 
 const rootElement = document.createElement("div");
 rootElement.className = "root";

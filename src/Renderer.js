@@ -12,7 +12,7 @@ import { LineBasicMaterial } from "three/src/materials/LineBasicMaterial.js";
 import { MeshBasicMaterial } from "three/src/materials/MeshBasicMaterial.js";
 import { Raycaster } from "three/src/core/Raycaster.js";
 
-import TWEEN from "@tweenjs/tween.js";
+// import TWEEN from "@tweenjs/tween.js";
 
 import Mouse from "./Mouse";
 import { getComputedElementDimensions } from "./utils";
@@ -170,7 +170,7 @@ export default class Renderer extends EventEmitter {
     this.mouse.intersect = intersects[0];
 
     this.renderer.render(this.scene, this.camera);
-    TWEEN.update(time);
+    // TWEEN.update(time);
     // this.controls.update();
   }
 
