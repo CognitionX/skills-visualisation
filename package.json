@@ -1,0 +1,61 @@
+{
+  "name": "skills-visualisation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "module": "build/index.js",
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --config ./config/webpack.local.js --watch --mode development --hot",
+    "build": "./node_modules/.bin/webpack --config ./config/webpack.build.js",
+    "test": "./node_modules/.bin/jest test --watch --modulePaths=./src"
+  },
+  "author": "",
+  "license": "ISC",
+  "eslintConfig": {
+    "env": {},
+    "parser": "babel-eslint",
+    "rules": {
+      "eqeqeq": "warn",
+      "double": "double"
+    }
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.4",
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "shader-loader": "^1.3.1",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2",
+    "webpack-node-externals": "^1.7.2",
+    "react-hot-loader": "^4.12.18",
+    "react-scripts": "^3.2.0",
+    "react-shadow": "^17.1.3"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "lodash": "^4.17.15",
+    "polylinear-scale": "^1.1.6",
+    "react": "^16.11.0",
+    "react-dom": "^16.12.0",
+    "redux": "^4.0.4",
+    "reselect": "^4.0.0",
+    "three": "^0.110.0"
+  }
+}

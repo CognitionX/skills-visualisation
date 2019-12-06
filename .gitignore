@@ -1,0 +1,23 @@
+__pycache__
+.python-version
+.DS_Store
+*.pyc
+.pytest_cache
+.ipynb_checkpoints
+tmp
+bin
+lib
+pyvenv.cfg
+pip-selfcheck.json
+etc
+share
+.idea
+npm-debug.log
+node_modules
+**.vscode/**
+*.code-workspace
+*.pyc
+ env.sh
+venv/*
+venv_dev/*
+build
