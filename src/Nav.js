@@ -19,7 +19,27 @@ const Nav = ({ skillList }) => {
     <nav className={styles["nav"]}>
       <h1>Your company's skills group</h1>
       <div className={styles["list"]}>
-        <div>Here are some example</div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus vel
+          facilisis volutpat est velit egestas. Eget sit amet tellus cras
+          adipiscing enim eu. Fringilla phasellus faucibus scelerisque eleifend
+          donec. Mi bibendum neque egestas congue quisque egestas. Leo vel orci
+          porta non pulvinar neque laoreet suspendisse. Donec et odio
+          pellentesque diam volutpat commodo sed. Aliquet nec ullamcorper sit
+          amet. Risus viverra adipiscing at in tellus integer feugiat
+          scelerisque. <br />
+          <br />
+          Nullam eget felis eget nunc lobortis mattis aliquam faucibus. Vel elit
+          scelerisque mauris pellentesque pulvinar pellentesque. Magna sit amet
+          purus gravida quis blandit turpis cursus in. Eget nulla facilisi etiam
+          dignissim diam quis enim. Pellentesque diam volutpat commodo sed
+          egestas egestas fringilla. Tellus elementum sagittis vitae et leo duis
+          ut diam quam. Sed id semper risus in hendrerit gravida rutrum quisque
+          non. Malesuada bibendum arcu vitae elementum curabitur vitae.
+          Sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper
+          eget. Feugiat vivamus at augue eget arcu dictum.
+        </div>
       </div>
     </nav>
   ) : (
