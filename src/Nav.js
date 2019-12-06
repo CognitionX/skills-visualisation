@@ -17,28 +17,29 @@ const Skill = ({ term, freq, total }) => {
 const Nav = ({ skillList }) => {
   return skillList.length === 0 ? (
     <nav className={styles["nav"]}>
-      <h1>Your company's skills group</h1>
+      <h1>Skills available in your Knowledge Network</h1>
       <div className={styles["list"]}>
         <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus vel
-          facilisis volutpat est velit egestas. Eget sit amet tellus cras
-          adipiscing enim eu. Fringilla phasellus faucibus scelerisque eleifend
-          donec. Mi bibendum neque egestas congue quisque egestas. Leo vel orci
-          porta non pulvinar neque laoreet suspendisse. Donec et odio
-          pellentesque diam volutpat commodo sed. Aliquet nec ullamcorper sit
-          amet. Risus viverra adipiscing at in tellus integer feugiat
-          scelerisque. <br />
+          Here are all the skills available in your organisation’s Knowledge
+          Network, visualised as clusters based on relatedness. <br />
           <br />
-          Nullam eget felis eget nunc lobortis mattis aliquam faucibus. Vel elit
-          scelerisque mauris pellentesque pulvinar pellentesque. Magna sit amet
-          purus gravida quis blandit turpis cursus in. Eget nulla facilisi etiam
-          dignissim diam quis enim. Pellentesque diam volutpat commodo sed
-          egestas egestas fringilla. Tellus elementum sagittis vitae et leo duis
-          ut diam quam. Sed id semper risus in hendrerit gravida rutrum quisque
-          non. Malesuada bibendum arcu vitae elementum curabitur vitae.
-          Sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper
-          eget. Feugiat vivamus at augue eget arcu dictum.
+          Each cluster is dynamically generated based on how often skills occur
+          together on user profiles. Note that clusters are *not* based on
+          existing structures within your organisation such as departments or
+          teams.
+          <br />
+          <br />
+          The distance between clusters indicates how closely related the skills
+          in the clusters are. Overlaps indicate that some skills are shared
+          between clusters.
+          <br />
+          <br />
+          The size of a cluster indicates how many people there are in your
+          network with the cluster’s skills.
+          <br />
+          <br />
+          If you hover over a cluster, the individual skills within it will
+          appear on the right, ordered by frequency.
         </div>
       </div>
     </nav>
