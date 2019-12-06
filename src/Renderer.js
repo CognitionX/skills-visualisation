@@ -27,17 +27,11 @@ export default class Renderer extends EventEmitter {
     this.canvas = canvas;
     this.canvasContainer = canvasContainer;
 
-    this.canvasContainer.addEventListener(
-      "mouseup",
-      this.onMouseUp.bind(this),
-      false
-    );
-    this.canvasContainer.addEventListener(
-      "mousemove",
-      this.onMouseMove.bind(this),
-      false
-    );
-    this.canvasContainer.addEventListener("mouseout", () => {}, false);
+    this.onMouseUp = this.onMouseUp.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
+
+    this.canvasContainer.addEventListener("mouseup", this.onMouseUp, false);
+    this.canvasContainer.addEventListener("mousemove", this.onMouseMove, false);
 
     const width = 800;
     const height = 800;
@@ -159,8 +153,8 @@ export default class Renderer extends EventEmitter {
   animate(time) {
     this.render(time);
 
-    setTimeout(() => {
-      requestAnimationFrame(this.animate);
+    this.timeout = setTimeout(() => {
+      this.raf = requestAnimationFrame(this.animate);
     }, 1000 / 30);
   }
 
@@ -172,6 +166,16 @@ export default class Renderer extends EventEmitter {
     this.renderer.render(this.scene, this.camera);
     // TWEEN.update(time);
     // this.controls.update();
+  }
+
+  destory() {
+    clearTimeout(this.timeout);
+    cancelAnimationFrame(this.raf);
+    this.canvasContainer.removeEventListener("mouseup", this.onMouseUp);
+    this.canvasContainer.removeEventListener("mousemove", this.onMouseMove);
+    this.renderer.context = null;
+    this.renderer.domElement = null;
+    this.renderer = null;
   }
 
   getElement() {

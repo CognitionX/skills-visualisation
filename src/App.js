@@ -69,6 +69,10 @@ class App extends React.Component {
     this.renderer.start();
   }
 
+  componentWillUnmount() {
+    this.renderer.destory();
+  }
+
   componentDidUpdate(prevProps) {
     const { current: rootEl } = this.rootRef;
     const { width, height } = this.props;
