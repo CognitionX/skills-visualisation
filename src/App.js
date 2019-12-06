@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { createRef } from "react";
-import root from "react-shadow";
+// import root from "react-shadow";
 import polylinearScale from "polylinear-scale";
 
 import Nav from "./Nav";
