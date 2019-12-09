@@ -4,10 +4,11 @@ import React, { createRef } from "react";
 import Nav from "./Nav";
 import Renderer from "./Renderer";
 import Cluster from "./Cluster";
-import Labels from "./Labels";
 import * as slectors from "./selectors";
 import { normalize } from "./utils";
+
 import styles from "./sass/styles.module.sass";
+import logoSvg from "./images/logo.svg";
 
 class App extends React.Component {
   constructor(props) {
@@ -118,8 +119,14 @@ class App extends React.Component {
           ref={this.canvasContainerRef}
           className={styles["canvas-container"]}
         >
+          <div
+            className={styles["canvas-container__logo"]}
+            style={{ background: `#F6F6F6 url(${logoSvg}) no-repeat` }}
+          />
+
+          <a className={styles["canvas-container__logo"]} />
+
           <canvas ref={this.canvasRef} />
-          <Labels />
         </div>
         <Nav
           skillList={skillList}
