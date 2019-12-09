@@ -65,7 +65,7 @@ class App extends React.Component {
     this.renderer.on("object-hover", this.onClusterHover);
     this.renderer.on("background-click", this.onBackgroundClick);
     this.renderer.start();
-    this.forceUpdate();
+    this.renderer.onResize();
   }
 
   onClusterClick(data) {
