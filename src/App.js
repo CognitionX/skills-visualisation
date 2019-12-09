@@ -1,24 +1,13 @@
 import _ from "lodash";
 import React, { createRef } from "react";
-// import root from "react-shadow";
-import polylinearScale from "polylinear-scale";
 
 import Nav from "./Nav";
 import Renderer from "./Renderer";
 import Cluster from "./Cluster";
 import Labels from "./Labels";
 import * as slectors from "./selectors";
+import { normalize } from "./utils";
 import styles from "./sass/styles.module.sass";
-
-const normalize = (arrays, range) => {
-  return arrays.reduce((accum, values) => {
-    const linear = polylinearScale(
-      [Math.min(...values), Math.max(...values)],
-      range
-    );
-    return accum.concat([values.map(value => linear(value))]);
-  }, []);
-};
 
 class App extends React.Component {
   constructor(props) {
@@ -29,10 +18,13 @@ class App extends React.Component {
     this.canvasRef = createRef();
 
     this.onClusterClick = this.onClusterClick.bind(this);
+    this.onClusterHover = this.onClusterHover.bind(this);
+    this.onBackgroundClick = this.onBackgroundClick.bind(this);
     this.renderer = undefined;
 
     this.state = {
-      setSelectedClusterId: undefined
+      selectedClusterId: undefined,
+      focused: false
     };
   }
 
@@ -49,7 +41,6 @@ class App extends React.Component {
 
     const [mdsDatFreq] = normalize([mdsDat["Freq"]], [0.05, 0.3]);
 
-    console.log(mdsDat["Freq"]);
     const clusters = _.range(range).map(index => {
       return new Cluster({
         x: mdsDatX[index],
@@ -66,7 +57,38 @@ class App extends React.Component {
     });
 
     this.renderer.on("object-click", this.onClusterClick);
+    this.renderer.on("object-hover", this.onClusterHover);
+    this.renderer.on("background-click", this.onBackgroundClick);
     this.renderer.start();
+  }
+
+  onClusterClick(data) {
+    const { selectedClusterId } = this.state;
+
+    this.setState({
+      focused: true
+    });
+    this.renderer.focus(selectedClusterId);
+  }
+
+  onClusterHover(data) {
+    const { focused } = this.state;
+    const { topic } = data;
+
+    if (!focused) {
+      this.setState({
+        selectedClusterId: topic
+      });
+      this.renderer.select(topic);
+    }
+  }
+
+  onBackgroundClick() {
+    this.setState({
+      selectedClusterId: undefined,
+      focused: false
+    });
+    this.renderer.deselect();
   }
 
   componentWillUnmount() {
@@ -74,30 +96,24 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { current: rootEl } = this.rootRef;
     const { width, height } = this.props;
 
     if (prevProps.width == width && prevProps.height == height) return;
-
-    rootEl.style.width = width + "px";
-    rootEl.style.height = height + "px";
-
-    this.renderer.onResize();
-  }
-
-  onClusterClick(data) {
-    this.setState({
-      selectedClusterId: data.topic
-    });
+    if (this.renderer) this.renderer.onResize();
   }
 
   render() {
     const { data } = this.props;
-    const { selectedClusterId } = this.state;
+    const { selectedClusterId, focused } = this.state;
     const skillList = slectors.makeGetSkillList(selectedClusterId)(data);
+    const { width, height } = this.props;
 
     return (
-      <section className={styles["section"]} ref={this.rootRef}>
+      <section
+        className={styles["section"]}
+        ref={this.rootRef}
+        style={{ width: width + "px", height: height + "px" }}
+      >
         <div
           ref={this.canvasContainerRef}
           className={styles["canvas-container"]}
@@ -105,7 +121,11 @@ class App extends React.Component {
           <canvas ref={this.canvasRef} />
           <Labels />
         </div>
-        <Nav skillList={skillList} />
+        <Nav
+          skillList={skillList}
+          focused={focused}
+          onBackToMainClick={this.onBackgroundClick}
+        />
       </section>
     );
   }

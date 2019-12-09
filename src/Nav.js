@@ -1,6 +1,9 @@
 import _ from "lodash";
 import React, { useRef, useEffect } from "react";
 import styles from "./sass/styles.module.sass";
+import classnames from "classnames";
+
+import userSvg from "./images/user.svg";
 
 const Skill = ({ term, freq, total }) => {
   return (
@@ -14,7 +17,7 @@ const Skill = ({ term, freq, total }) => {
   );
 };
 
-const Nav = ({ skillList }) => {
+const Nav = ({ skillList, focused, onBackToMainClick }) => {
   return skillList.length === 0 ? (
     <nav className={styles["nav"]}>
       <h1>Skills available in your Knowledge Network</h1>
@@ -51,8 +54,22 @@ const Nav = ({ skillList }) => {
           .map(item => item.term)
           .join(", ")}
       </h1>
-      <div>
+
+      <a
+        onClick={onBackToMainClick}
+        className={classnames(styles["nav__back-to-main"], {
+          enabled: focused
+        })}
+      >
+        {"< Back to main"}
+      </a>
+
+      <div className={styles["nav__sub-header"]}>
         <h2>Skills:</h2>
+        <div
+          className={styles["nav__user-logo"]}
+          style={{ backgroundImage: `url(${userSvg})` }}
+        />
       </div>
       <div className={styles["list"]}>
         {skillList.map(skill => (

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
-import { hot } from "react-hot-loader/root";
+// import { hot } from "react-hot-loader/root";
 
 import App from "./App";
 import "./sass/root.sass";
@@ -35,4 +35,5 @@ const Root = () => {
 
 const render = Root => ReactDOM.render(<Root />, rootElement);
 
-render(hot(Root));
+render(Root);
+// render(hot(Root));

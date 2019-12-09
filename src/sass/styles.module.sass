@@ -45,6 +45,31 @@
     font-weight: 600
     font-size: 1rem  
     margin: 0px 0px 8px 0px
+  
+  &__back-to-main 
+    display: block
+    color: #0096ff 
+    font-size: 0.9rem  
+    margin: 0 0 20px 0 
+    height: 0px
+    overflow: hidden 
+    transition: height cubic-bezier(.08,.74,.41,1) 0.4s 
+    
+    &:global.enabled 
+      height: 20px
+      
+    &:hover 
+      cursor: pointer
+    
+  &__sub-header 
+    display: flex
+    justify-content: space-between 
+    
+  &__user-logo
+    width: 20px
+    height: 20px
+    background-repeat: no-repeat 
+    
 
 
 .list 

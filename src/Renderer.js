@@ -17,6 +17,7 @@ import { Raycaster } from "three/src/core/Raycaster.js";
 import Mouse from "./Mouse";
 import { getComputedElementDimensions } from "./utils";
 import EventEmitter from "eventemitter3";
+import Cluster from "./Cluster";
 
 // import clusterVertexShader from "./shaders/cluster.vert";
 // import clusterFragmentShader from "./shaders/cluster.frag";
@@ -89,32 +90,24 @@ export default class Renderer extends EventEmitter {
       -((e.clientY - top) / (bottom - top)) * 2 + 1
     );
 
-    if (this.mouse.intersect) {
-      const { topic } = this.mouse.intersect.object.userData;
+    const intersect = this.mouse.intersect;
 
-      this.emit("object-click", this.mouse.intersect.object.userData);
-
-      this.clusters.forEach(cluster => {
-        const hightlighted = new Color("#0096ff");
-        const original = new Color("#666666");
-
-        const targetColor =
-          topic == cluster.userData.topic ? hightlighted : original;
-        const targetOpacity = topic == cluster.userData.topic ? 0.8 : 0.3;
-
-        if (!cluster.material.color.equals(targetColor)) {
-          cluster.material.color = targetColor;
-          cluster.material.opacity = targetOpacity;
-        }
-      });
+    if (intersect && !intersect.object.userData.disabled) {
+      this.emit("object-hover", intersect.object.userData);
+      document.body.style.cursor = "pointer";
+    } else {
+      document.body.style.cursor = "default";
     }
-
-    document.body.style.cursor = this.mouse.intersect ? "pointer" : "default";
   }
 
   onMouseUp() {
-    if (this.mouse.intersect) {
-      this.emit("object-click", this.mouse.intersect.object.userData);
+    const intersect = this.mouse.intersect;
+
+    if (intersect && !intersect.object.userData.disabled) {
+      const { userData } = this.mouse.intersect.object;
+      this.emit("object-click", userData);
+    } else {
+      this.emit("background-click");
     }
   }
 
@@ -166,8 +159,44 @@ export default class Renderer extends EventEmitter {
     this.mouse.intersect = intersects[0];
 
     this.renderer.render(this.scene, this.camera);
-    // TWEEN.update(time);
-    // this.controls.update();
+  }
+
+  focus(clusterId) {
+    this.clusters.forEach(cluster => {
+      if (cluster.userData.topic === clusterId) {
+        cluster.userData.enable();
+      } else {
+        cluster.userData.disable();
+        cluster.material.opacity = Cluster.disabledOpacity;
+      }
+    });
+  }
+
+  select(clusterId) {
+    this.clusters.forEach(cluster => {
+      const hightlighted = new Color("#0096ff");
+      const original = new Color("#666666");
+
+      const targetColor =
+        clusterId == cluster.userData.topic ? hightlighted : original;
+      const targetOpacity = clusterId == cluster.userData.topic ? 0.8 : 0.3;
+
+      if (!cluster.material.color.equals(targetColor)) {
+        cluster.material.color = targetColor;
+        cluster.material.opacity = targetOpacity;
+      }
+    });
+  }
+
+  deselect() {
+    this.clusters.forEach(cluster => {
+      const targetColor = new Color("#666666");
+      const targetOpacity = 0.3;
+
+      cluster.material.color = targetColor;
+      cluster.material.opacity = targetOpacity;
+      cluster.userData.enable();
+    });
   }
 
   destory() {
