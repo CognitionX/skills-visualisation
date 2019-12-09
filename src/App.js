@@ -8,7 +8,11 @@ import * as slectors from "./selectors";
 import { normalize } from "./utils";
 
 import styles from "./sass/styles.module.sass";
-import logoSvg from "./images/logo.svg";
+// import logoSvg from "./images/logo.svg";
+// import logoSvg from "svg-inline-loader?classPrefix!./images/logo.svg";
+// const logoSvg = require("svg-inline-loader?classPrefix!./images/logo.svg");
+
+const logoSvg = require("svg-url-loader?stripdeclarations!./images/logo.svg");
 
 class App extends React.Component {
   constructor(props) {
@@ -61,6 +65,7 @@ class App extends React.Component {
     this.renderer.on("object-hover", this.onClusterHover);
     this.renderer.on("background-click", this.onBackgroundClick);
     this.renderer.start();
+    this.renderer.onResize();
   }
 
   onClusterClick(data) {

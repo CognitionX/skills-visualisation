@@ -18,8 +18,8 @@ const Root = () => {
 
   const onResize = () => {
     const { innerWidth: width, innerHeight: height } = window;
-    setWidth(width);
-    setHeight(height);
+    setWidth(width - 100);
+    setHeight(height - 70);
   };
 
   useEffect(() => {
