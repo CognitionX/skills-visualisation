@@ -125,8 +125,6 @@ class App extends React.Component {
             style={{ background: `#F6F6F6 url(${logoSvg}) no-repeat` }}
           />
 
-          <a className={styles["canvas-container__logo"]} />
-
           <canvas ref={this.canvasRef} />
         </div>
         <Nav
