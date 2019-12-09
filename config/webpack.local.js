@@ -51,11 +51,13 @@ module.exports = {
         ]
       },
       {
-        test: /\.svg/,
-        use: {
-          loader: "svg-url-loader",
-          options: {}
-        }
+        test: /\.(png|jpg|gif|svg)$/i,
+        use: [
+          {
+            loader: "url-loader",
+            options: {}
+          }
+        ]
       }
     ]
   },

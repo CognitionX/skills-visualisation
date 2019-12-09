@@ -8,11 +8,7 @@ import * as slectors from "./selectors";
 import { normalize } from "./utils";
 
 import styles from "./sass/styles.module.sass";
-// import logoSvg from "./images/logo.svg";
-// import logoSvg from "svg-inline-loader?classPrefix!./images/logo.svg";
-// const logoSvg = require("svg-inline-loader?classPrefix!./images/logo.svg");
-
-const logoSvg = require("svg-url-loader?stripdeclarations!./images/logo.svg");
+import logoSvg from "./images/logo.svg";
 
 class App extends React.Component {
   constructor(props) {
