@@ -48,7 +48,7 @@ const Nav = ({ skillList, focused, onBackToMainClick }) => {
     </nav>
   ) : (
     <nav className={styles["nav"]}>
-      <h1>
+      <h1 className="blue">
         {skillList
           .slice(0, 2)
           .map(item => item.term)

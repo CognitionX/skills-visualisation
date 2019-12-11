@@ -48,7 +48,10 @@
   h1 
     font-weight: 600
     font-size: 1.6rem  
-    margin: 20px 0px 30px 0px
+    margin: 12px 0px 30px 0px
+    &:global.blue 
+      color: #0096ff 
+
     
   h2
     font-weight: 600
@@ -59,14 +62,15 @@
     display: block
     color: #0096ff 
     font-size: 0.9rem  
-    margin: 0 0 20px 0 
+    margin-bottom: 0px; 
     height: 0px
     overflow: hidden 
-    transition: height cubic-bezier(.08,.74,.41,1) 0.4s 
+    transition: height cubic-bezier(.08,.74,.41,1) 0.4s, margin-bottom cubic-bezier(.08,.74,.41,1) 0.4s
     
     &:global.enabled 
       height: 20px
-      
+      margin-bottom: 32px; 
+
     &:hover 
       cursor: pointer
     
@@ -84,7 +88,7 @@
 
 .list 
   border-top: solid 1px #444444
-  padding: 40px 0px 40px 0px
+  padding: 15px 0px 15px 0px
 
 .skill 
   margin-bottom: 10px

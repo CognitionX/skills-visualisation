@@ -6,8 +6,8 @@ import { Router } from "react-router-dom";
 
 import App from "./App";
 import "./sass/root.sass";
-import data from "./samples/test_1.json";
-
+import data from "./samples/4.json";
+console.log(data);
 const rootElement = document.createElement("div");
 rootElement.className = "root";
 document.body.appendChild(rootElement);

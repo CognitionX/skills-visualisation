@@ -24,12 +24,11 @@ export const makeGetSkillList = clusterId => {
       if (!clusterId) return [];
       const [indexFrom, indexTo] = range;
       const results = [];
-      for (let i = indexFrom; i < indexTo; i++) {
+      for (let i = indexFrom; i <= indexTo; i++) {
         results.push(
           new Skill({
-            term: clusterIndex["Term"][i],
-            freq: clusterIndex["Freq"][i],
-            total: clusterIndex["Total"][i]
+            term: clusterIndex["Terms"][i],
+            freq: clusterIndex["Freq"][i]
           })
         );
       }
