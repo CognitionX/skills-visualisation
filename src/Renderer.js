@@ -197,6 +197,15 @@ export default class Renderer extends EventEmitter {
       cluster.material.opacity = targetOpacity;
       cluster.userData.enable();
     });
+
+    const intersect = this.mouse.intersect;
+
+    if (intersect && !intersect.object.userData.disabled) {
+      this.emit("object-hover", intersect.object.userData);
+      document.body.style.cursor = "pointer";
+    } else {
+      document.body.style.cursor = "default";
+    }
   }
 
   destory() {
