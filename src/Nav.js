@@ -5,9 +5,10 @@ import classnames from "classnames";
 
 import userSvg from "./images/user.svg";
 
-const Skill = ({ term, freq, total }) => {
+const Skill = ({ term, freq, total, onClick }) => {
+  console.log("clicked")
   return (
-    <div className={styles["skill"]}>
+    <div onClick={onClick} className={styles["skill"]}>
       <div className={styles["skill__term"]}>{term}</div>
       <div className={styles["skill__line"]}>
         <hr />
@@ -73,7 +74,7 @@ const Nav = ({ skillList, focused, onBackToMainClick }) => {
       </div>
       <div className={styles["list"]}>
         {skillList.map(skill => (
-          <Skill key={skill.term} {...skill} />
+          <Skill onClick={onSkillClick} key={skill.term} {...skill} />
         ))}
       </div>
     </nav>
