@@ -1,12 +1,11 @@
 import _ from "lodash";
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import styles from "./sass/styles.module.sass";
 import classnames from "classnames";
 
 import userSvg from "./images/user.svg";
 
 const Skill = ({ term, freq, total, onClick }) => {
-  console.log("clicked")
   return (
     <div onClick={onClick} className={styles["skill"]}>
       <div className={styles["skill__term"]}>{term}</div>
@@ -18,7 +17,7 @@ const Skill = ({ term, freq, total, onClick }) => {
   );
 };
 
-const Nav = ({ skillList, focused, onBackToMainClick }) => {
+const Nav = ({ skillList, focused, onBackToMainClick, onSkillClick }) => {
   return skillList.length === 0 ? (
     <nav className={styles["nav"]}>
       <h1>Skills available in your Knowledge Network</h1>
@@ -74,7 +73,7 @@ const Nav = ({ skillList, focused, onBackToMainClick }) => {
       </div>
       <div className={styles["list"]}>
         {skillList.map(skill => (
-          <Skill onClick={onSkillClick} key={skill.term} {...skill} />
+          <Skill onClick={e => onSkillClick(e, skill.term)} key={skill.term} {...skill} />
         ))}
       </div>
     </nav>
