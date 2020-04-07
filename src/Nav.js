@@ -17,9 +17,9 @@ const Skill = ({ term, freq, total, onClick }) => {
   );
 };
 
-const Nav = ({ skillList, focused, onBackToMainClick, onSkillClick }) => {
+const Nav = ({ skillList, focused, onBackToMainClick, onSkillClick, maxHeight }) => {
   return skillList.length === 0 ? (
-    <nav className={styles["nav"]}>
+    <nav style={{ maxHeight: maxHeight, overflow: "auto" }} className={styles["nav"]}>
       <h1>Skills available in your Knowledge Network</h1>
       <div className={styles["list"]}>
         <div>

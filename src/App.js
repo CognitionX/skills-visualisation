@@ -168,6 +168,7 @@ class App extends React.Component {
         {
           !isProfilesView &&
           <Nav
+            maxHeight={height}
             skillList={skillList}
             focused={focused}
             onBackToMainClick={this.onBackgroundClick}
