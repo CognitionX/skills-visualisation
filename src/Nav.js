@@ -47,7 +47,7 @@ const Nav = ({ skillList, focused, onBackToMainClick, onSkillClick, maxHeight })
       </div>
     </nav>
   ) : (
-    <nav className={styles["nav"]}>
+    <nav style={{ maxHeight: `${maxHeight}px`, overflow: "auto" }} className={styles["nav"]}>
       <h1 className="blue">
         {skillList
           .slice(0, 2)
