@@ -8,6 +8,7 @@
   background: #F6F6F6 
   padding: 15px 0px
   box-sizing: border-box
+  position: relative
   
 .canvas-container 
   flex-grow: 1
@@ -93,7 +94,8 @@
 .skill 
   margin-bottom: 10px
   display: flex
-  justify-content: space-between 
+  justify-content: space-between
+  cursor: pointer 
   &__term
   &__line
     flex-grow: 1
@@ -106,7 +108,24 @@
       border-bottom: 1px solid rgba(70, 70, 70, 0.3);
   &__freq
   
-  
+
+.profiles-by-skill  
+  position: relative;
+
+.back-button 
+  color: #0096ff 
+  font-size: 0.9rem 
+  border: 0
+  background: transparent
+  position: absolute
+  right: 0
+  top: 100px
+  cursor: pointer
+  &:hover
+    color: #363636;
+  &--mobile
+    position: relative
+    top: 30px
  
 
 
